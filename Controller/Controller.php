@@ -3,7 +3,7 @@ namespace Controller;
 
 use Smarty;
 
-abstract class Controller
+class Controller
 {
     public $smarty;
 

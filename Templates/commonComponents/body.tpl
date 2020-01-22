@@ -10,7 +10,7 @@
 
                 {foreach $categories as $category}
                     <li class="nav-item">
-                        <a class="nav-link active" href="/?category={$category['categoryId']}">{$category['title']}</a>
+                        <a class="nav-link active" href="/?page=category&categoryid={$category['categoryId']}">{$category['title']}</a>
                     </li>
                 {/foreach}
 
