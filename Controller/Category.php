@@ -5,6 +5,10 @@ require_once 'Model/Category.php';
 
 class Category extends Controller
 {
+    /**
+     * Zobrazi list kategorii / homepage
+     * @throws \SmartyException
+     */
     public function showDefault()
     {
         $categoryModel = new \Model\Category();
@@ -12,6 +16,12 @@ class Category extends Controller
         return $this->smarty->display('Category/list.tpl');
     }
 
+    /**
+     * Zobrazi detail kategorie = vypis produktu kategorie
+     * @param $categoryId
+     *
+     * @throws \SmartyException
+     */
     public function showDetail($categoryId)
     {
         $productPerPage = 5;

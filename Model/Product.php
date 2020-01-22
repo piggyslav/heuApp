@@ -21,11 +21,15 @@ class Product
         $this->getProductInfo();
     }
 
+
     public function getProduct()
     {
         return $this->product;
     }
 
+    /**
+     * Dotahani dodatecnych informaci o produktu (cache)
+     */
     private function getProductInfo(){
         $offers = (new \ApiFetch("http://heureka-testday.herokuapp.com/offers/{$this->product['productId']}/"))->getArrayData();
         $price = [

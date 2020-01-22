@@ -9,6 +9,7 @@ class Controller
 
     /**
      * Controller constructor.
+     * Inituje smarty, dafaultni template folder
      */
     public function __construct()
     {

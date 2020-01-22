@@ -18,10 +18,13 @@ class Category extends Model
 
     }
 
+    /**
+     * Nacte obrazky kategorii, zde bych nasadil cache
+     */
     private function loadCategoriesImages()
     {
         foreach ($this->items as &$category) {
-            $products = (new \ApiFetch("http://heureka-testday.herokuapp.com/products/{$category['categoryId']}/0/1/"))->getArrayData();
+            $products = (new \ApiFetch("http://heureka-testday.herokuapp.com/products/{$category['categoryId']}/0/2/"))->getArrayData();
             foreach ($products as $prod) {
                 $offers = (new \ApiFetch("http://heureka-testday.herokuapp.com/offers/{$prod['productId']}/"))->getArrayData();
                 foreach ($offers as $offer) {
@@ -40,11 +43,26 @@ class Category extends Model
         }
     }
 
+    /**
+     * @param $categoryId
+     *
+     * @return mixed
+     */
     public function getCategoryProductsCount($categoryId)
     {
        return (new \ApiFetch("http://heureka-testday.herokuapp.com/products/{$categoryId}/count"))->getArrayData()['count'];
     }
 
+
+    /**
+     * Vrati pole produktu danne kategorie obohacene o obrazky, min/max ceny a popisek z offers. Pro zobrazeni se strenkovanim.
+     * dalo by se cachovat a oddelit metodu pro ziskavani dodatecnych dat, udelat ji univerzalnejsi
+     * @param     $categoryId
+     * @param int $offset
+     * @param int $limit
+     *
+     * @return mixed
+     */
     public function getCategoryProducts($categoryId, $offset = 0, $limit = 5)
     {
         $products = (new \ApiFetch("http://heureka-testday.herokuapp.com/products/{$categoryId}/{$offset}/{$limit}"))->getArrayData();
@@ -76,4 +94,6 @@ class Category extends Model
         }
         return $products;
     }
+
+
 }

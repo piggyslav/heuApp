@@ -10,6 +10,12 @@ require_once 'Model/Offer.php';
 
 class Product extends Controller
 {
+    /**
+     * Zobrazi detail produktu s jeho nabidkami
+     * @param $productId
+     *
+     * @throws \SmartyException
+     */
     public function showDetail($productId)
     {
         $categoryModel = new \Model\Category();
